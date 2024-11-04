@@ -1,29 +1,44 @@
-<script setup lang="ts">
-const lIngredientes: string[] = ["Alho", "Manteiga", "Orégano"];
-lIngredientes.push("Leite");
+<script lang="ts">
+import SelecionarIngredientes from "./SelecionarIngredientes.vue";
+
+export default {
+  data() {
+    return {
+      lIngredientes: ["Alho", "Manteiga", "Orégano"] as string[],
+    };
+  },
+  created() {
+    this.lIngredientes.push("Leite");
+  },
+  components: { SelecionarIngredientes },
+};
 </script>
 
 <template>
   <main class="conteudo-principal">
-    <span class="subtitulo-lg sua-lista-texto"> Sua lista: </span>
+    <section>
+      <span class="subtitulo-lg sua-lista-texto"> Sua lista: </span>
 
-    <ul v-if="lIngredientes.length > 0" class="ingredientes-sua-lista">
-      <li
-        v-for="lIngrediente in lIngredientes"
-        :key="lIngrediente"
-        class="ingrediente"
-      >
-        {{ lIngrediente }}
-      </li>
-    </ul>
+      <ul v-if="lIngredientes.length > 0" class="ingredientes-sua-lista">
+        <li
+          v-for="lIngrediente in lIngredientes"
+          :key="lIngrediente"
+          class="ingrediente"
+        >
+          {{ lIngrediente }}
+        </li>
+      </ul>
 
-    <p v-else class="paragafo lista-vazia">
-      <img
-        src="../assets/imagens/icones/lista-vazia.svg"
-        alt="Icone de pesquisa"
-      />
-      Sua lista está vazia, selecione ingredientes para iniciar.
-    </p>
+      <p v-else class="paragafo lista-vazia">
+        <img
+          src="../assets/imagens/icones/lista-vazia.svg"
+          alt="Icone de pesquisa"
+        />
+        Sua lista está vazia, selecione ingredientes para iniciar.
+      </p>
+    </section>
+
+    <SelecionarIngredientes />
   </main>
 </template>
 
