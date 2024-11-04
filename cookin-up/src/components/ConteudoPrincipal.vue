@@ -3,13 +3,21 @@ import SelecionarIngredientes from "./SelecionarIngredientes.vue";
 import SeusIngredientes from "./SeusIngredientes.vue";
 
 export default {
+  data() {
+    return {
+      lIngredientes: ["Alho", "Manteiga", "Orégano"] as string[],
+    };
+  },
+  created() {
+    this.lIngredientes.push("Leite");
+  },
   components: { SeusIngredientes, SelecionarIngredientes },
 };
 </script>
 
 <template>
   <main class="conteudo-principal">
-    <SeusIngredientes />
+    <SeusIngredientes :ingredientes="lIngredientes" />
     <SelecionarIngredientes />
   </main>
 </template>

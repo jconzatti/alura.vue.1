@@ -1,16 +1,12 @@
 <script lang="ts">
+import type { PropType } from "vue";
 import Tag from "./Tag.vue";
 
 export default {
-  data() {
-    return {
-      lIngredientes: ["Alho", "Manteiga", "Orégano"] as string[],
-    };
-  },
-  created() {
-    this.lIngredientes.push("Leite");
-  },
   components: { Tag },
+  props: {
+    ingredientes: { type: Array as PropType<string[]>, required: true },
+  },
 };
 </script>
 
@@ -18,8 +14,8 @@ export default {
   <section>
     <span class="subtitulo-lg sua-lista-texto"> Sua lista: </span>
 
-    <ul v-if="lIngredientes.length > 0" class="ingredientes-sua-lista">
-      <li v-for="lIngrediente in lIngredientes" :key="lIngrediente">
+    <ul v-if="ingredientes.length > 0" class="ingredientes-sua-lista">
+      <li v-for="lIngrediente in ingredientes" :key="lIngrediente">
         <Tag :texto="lIngrediente" :ativa="true" />
       </li>
     </ul>
